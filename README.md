@@ -1,2 +1,2 @@
 # cryptoExchange
-Building a crypto currency exchange 
+Building a crypto currency exchange with React
