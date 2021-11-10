@@ -1,0 +1,10 @@
+
+
+
+
+Migrations 
+- It is important that you number your migration files, because truffle needs to know what order to run them in 
+- Migrations basically means that you are changing the blockchains state 
+- The Token.json file create an javascript abstraction of the smart contract and it can read them from the global 
+artifacts variable (located in the migrations directory) and require the Token out of that.    Example: artifacts.reguire("Token")
+
