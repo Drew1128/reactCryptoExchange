@@ -8,3 +8,14 @@ Migrations
 - The Token.json file create an javascript abstraction of the smart contract and it can read them from the global 
 artifacts variable (located in the migrations directory) and require the Token out of that.    Example: artifacts.reguire("Token")
 
+Deployment
+- 
+
+Truffle Console
+- access by writting "truffle console" in the terminal
+This opens a node.js console that is going to load my truffle project so that you can interact anything you've created with truffle 
+- Run "const token = await Token.deployed()"
+- from there you can interact with the token with all sorts of commands. For Example: run the script "const name = await token.name()", 
+then run the script "name" and the console will return the name of the contract, etc
+
+
