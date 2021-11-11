@@ -2,25 +2,4 @@
 
 
 
-Migrations 
-- It is important that you number your migration files, because truffle needs to know what order to run them in 
-- Migrations basically means that you are changing the blockchains state 
-- The Token.json file create an javascript abstraction of the smart contract and it can read them from the global 
-artifacts variable (located in the migrations directory) and require the Token out of that.    Example: artifacts.reguire("Token")
 
-Deployment
-- 
-
-Truffle Console
-- access by writting "truffle console" in the terminal
-This opens a node.js console that is going to load my truffle project so that you can interact anything you've created with truffle 
-- Run "const token = await Token.deployed()"
-- from there you can interact with the token with all sorts of commands. For Example: run the script "const name = await token.name()", 
-then run the script "name" and the console will return the name of the contract, etc
-
-Testing Smart Contracts 
-- Truffle is going to allow us to write test inside of our contract and run test via the command "truffle test"
-- You can run test in Javascript or TypeScipt
-- Mocha is a testing framwork in JavaScript (Allows us to structure and run test)
-- Chai is an assertion library (Allows us to check for things inside of a test i.e 'chai.should()' )
-- Naming convention: name your test file the exact same as your contrat 
