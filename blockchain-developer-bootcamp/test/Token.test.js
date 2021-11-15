@@ -49,6 +49,13 @@ contract('Token', ([deployer, receiver]) => {
     })
 
     describe ('sending Tokens', ()=> {
+        let amount 
+        let result 
+       
+        beforeEach(async () => {
+            amount = tokens(100)
+            result = await token.transfer(receiver, amount, {from: deployer})
+        })
 
         it('transfers token balances', async () =>{
             let balanceOf
@@ -59,13 +66,13 @@ contract('Token', ([deployer, receiver]) => {
             console.log("reciever balance before transfer", balanceOf.toString())
 
             // Transfer (The from value is the function meta date)
-            await token.transfer(receiver, tokens(100), {from: deployer})
+            
 
             // Balances after transfer
             balanceOf = await token.balanceOf(deployer)
-            console.log('deployer balance after transfer', balanceOf.toString())
+            balanceOf.toString().should.equal(tokens(999900).toString())
             balanceOf = await token.balanceOf(receiver)
-            console.log("reciever balance after transfer", balanceOf.toString())
+            balanceOf.toString().should.equal(tokens(100).toString())
 
 
         })
