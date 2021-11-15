@@ -1,14 +1,12 @@
+import { tokens } from '../helpers'
+
 const Token = artifacts.require('./Token')
 
 require('chai')
  .use(require('chai-as-promised'))
  .should()
 
- const tokens = (n) => {
-     return new web3.utils.BN(
-    web3.utils.toWei(n.toString(), 'ether')
-     )
- }
+
 
 contract('Token', ([deployer, receiver]) => {
     const name = 'Drew Token'
