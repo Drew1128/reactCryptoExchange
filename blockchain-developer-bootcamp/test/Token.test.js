@@ -146,7 +146,7 @@ contract('Token', ([deployer, receiver, exchange]) => {
     })
 
 
-    describe('delegasted token transfers', () => {
+    describe('delegated token transfers', () => {
         let amount
         let result
 
@@ -167,6 +167,12 @@ contract('Token', ([deployer, receiver, exchange]) => {
                 balanceOf.toString().should.equal(tokens(999900).toString())
                 balanceOf = await token.balanceOf(receiver)
                 balanceOf.toString().should.equal(tokens(100).toString())
+            })
+
+
+            it('resets the allowance', async () => {
+                const allowance = await token.allowance(deployer, exchange)
+                allowance.toString().should.equal('0')
             })
 
             it('emits a Transfer event', async () => {
