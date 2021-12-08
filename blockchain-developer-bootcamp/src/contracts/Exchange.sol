@@ -4,9 +4,9 @@ import "./Token.sol";
     
     // todo:
     // [X] set the fee acount 
-    // [] deposit ether 
+    // [X] deposit ether 
     // [] withdraw ether 
-    // [] withdraw tokens
+    // [X] withdraw tokens
     // [] check balances
     // [] make order 
     // [] cancel order
@@ -31,6 +31,11 @@ contract Exchange {
     constructor (address _feeAccount, uint256 _feePercent) public {
         feeAccount = _feeAccount; // 
         feePercent = _feePercent;
+    }
+
+    // Fallback: reverts is Ether is sent to this smart contract by mistake
+    function( ) external {
+        revert();
     }
 
     function depositEther() payable public {
