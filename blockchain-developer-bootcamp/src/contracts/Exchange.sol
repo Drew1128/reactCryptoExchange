@@ -8,7 +8,7 @@ import "./Token.sol";
     // [X] withdraw ether 
     // [X] withdraw tokens
     // [X] check balances
-    // [] make order 
+    // [X] make order 
     // [] cancel order
     // [] fill order
     // [] charge fees
@@ -24,12 +24,22 @@ contract Exchange {
     address constant ETHER = address(0); // store ether in tokens mapping with blank address 
     mapping(address => mapping(address => uint256)) public tokens;
     mapping(uint256 => _Order) public orders;
+    mapping(uint256 => bool) public orderCancelled;
     uint256 public orderCount;
 
 // events 
     event Deposit (address token, address user, uint256 amount, uint256 balance);
     event Withdraw (address token, address user, uint256 amount, uint256 balance);
     event Order(
+        uint256 id,
+        address user,
+        address tokenGet,
+        uint256 amountGet,
+        address tokenGive,
+        uint256 amountGive,
+        uint256 timestamp
+    );
+     event Cancel(
         uint256 id,
         address user,
         address tokenGet,
@@ -101,6 +111,15 @@ contract Exchange {
         orderCount = orderCount.add(1);
         orders[orderCount] = _Order(orderCount, msg.sender, _tokenGet, _amountGet, _tokenGive, _amountGive, now); // now is expressed in epoch timestamps
         emit Order(orderCount, msg.sender, _tokenGet, _amountGet, _tokenGive, _amountGive, now);
+    }
+
+    function cancelOrder(uint256 _id) public {
+        _Order storage _order = orders[_id];
+        require(address(_order.user) == msg.sender); // must be your own order
+        require(_order.id == _id); // the order must exist
+        orderCancelled[_id] = true;
+        emit Cancel(_order.id, msg.sender, _order.tokenGet, _order.amountGet, _order.tokenGive, _order.amountGive, now);
+
     }
     
     }
