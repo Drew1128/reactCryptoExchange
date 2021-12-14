@@ -21,6 +21,7 @@ contract Exchange {
 // events 
     event Deposit (address token, address user, uint256 amount, uint256 balance);
     event Withdraw (address token, address user, uint256 amount, uint256 balance);
+    
     event Order(
         uint256 id,
         address user,
@@ -30,6 +31,7 @@ contract Exchange {
         uint256 amountGive,
         uint256 timestamp
     );
+
      event Cancel(
         uint256 id,
         address user,
@@ -39,6 +41,7 @@ contract Exchange {
         uint256 amountGive,
         uint256 timestamp
     );
+    
        event Trade(
         uint256 id,
         address user,
