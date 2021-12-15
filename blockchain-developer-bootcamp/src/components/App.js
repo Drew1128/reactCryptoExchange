@@ -14,7 +14,7 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts()
     const token = new web3.eth.Contract(Token.abi, Token.networks[networkId].address)
     const totalSupply = await token.methods.totalSupply().call()
-    console.log('total supply: ', totalSupply)
+  
   }
 
   render() {
