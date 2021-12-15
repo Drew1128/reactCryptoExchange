@@ -2,19 +2,26 @@ import React, { Component } from 'react';
 import './App.css';
 import Web3 from 'web3'
 import Token from '../abis/Token.json'
+import { 
+loadWeb3, 
+loadAccount,
+loadToken,
+loadExchange, } 
+from '../store/interactions';
+
+import { connect } from 'react-redux';
 
 class App extends Component {
   componentWillMount() {
-    this.loadBlockchainData()
+    this.loadBlockchainData(this.props.dispatch)
   }
 
-  async loadBlockchainData() {
-    const web3 = new Web3(window.ethereum)
+  async loadBlockchainData(dispatch) {
+    const web3 = await loadWeb3(dispatch)
     const networkId = await web3.eth.net.getId()
-    const accounts = await web3.eth.getAccounts()
-    const token = new web3.eth.Contract(Token.abi, Token.networks[networkId].address)
-    const totalSupply = await token.methods.totalSupply().call()
-  
+    const accounts = await loadAccount(web3, dispatch)
+    const token = await loadToken(web3, networkId, dispatch)
+    const exchange = await loadExchange(web3, networkId, dispatch)
   }
 
   render() {
@@ -108,4 +115,9 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    // fill me in...
+  }
+}
+export default connect(mapStateToProps)(App);
