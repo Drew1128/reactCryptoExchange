@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import Web3 from 'web3'
 import Token from '../abis/Token.json'
+import { connect } from 'react-redux';
 import { 
 loadWeb3, 
 loadAccount,
 loadToken,
 loadExchange, } 
 from '../store/interactions';
+import { accountSelector } from '../store/selectors'
 
-import { connect } from 'react-redux';
+
 
 class App extends Component {
   componentWillMount() {
@@ -25,6 +27,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.account)
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -117,7 +120,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    // fill me in...
+    account: accountSelector(state)
   }
 }
 export default connect(mapStateToProps)(App);
