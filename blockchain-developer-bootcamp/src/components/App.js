@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './App.css';
 
 import Navbar from './navbar';
 import Content from './content';
 
-import './App.css';
+import { contractsLoadedSelector } from '../store/selectors';
 
 
 import { 
@@ -37,14 +38,17 @@ class App extends Component {
     return (
       <div>
         <Navbar/>
-        <Content />
+        { this.props.contractsLoaded ? <Content /> : <div className="content"></div> }
+        
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
+  
   return {
+    contractsLoaded: contractsLoadedSelector(state)
   }
 }
 export default connect(mapStateToProps)(App);
