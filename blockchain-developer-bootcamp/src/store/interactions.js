@@ -6,7 +6,8 @@ import {
   exchangeLoaded,
   cancelledOrdersLoaded,
   filledOrdersLoaded,
-  allOrdersLoaded
+  allOrdersLoaded,
+  orderCancelling
   
 } from './actions'
 import Token from '../abis/Token.json'
@@ -81,7 +82,15 @@ export const loadAllOrders = async (exchange, dispatch) => {
   // Add open orders to the redux store
   dispatch(allOrdersLoaded(allOrders))
 
+}
 
-
-
+export const cancelOrder = (dispatch, exchange, order, account) => {
+  exchange.methods.cancelOrder(order.id).send({from: account})
+  .on('transactionhash', (hash) => {
+    dispatch(orderCancelling())
+  })
+  .on('error', (error) => {
+    console.log(error)
+    window.alert("There was an error!")
+  })
 }

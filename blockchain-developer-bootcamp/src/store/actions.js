@@ -49,6 +49,14 @@ export function tokenLoaded(contract) {
       allOrders
   }
   }
+
+  
+  export function orderCancelling(){
+    return {
+      type: 'ORDER_CANCELLING'
+      
+  }
+  }
  
   
 
