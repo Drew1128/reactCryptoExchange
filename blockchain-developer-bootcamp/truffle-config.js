@@ -14,16 +14,16 @@ module.exports = {
      port: 7545,
      network_id: "*"  // match any network id
        },
-   ropsten: {
-         provider: function() {
-           return new HDWalletProvider(
-            privateKeys.split(','),
-            `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}`
-           )
+    mumbai: {
+      provider: function () {
+        return new HDWalletProvider(
+          privateKeys.split(','),
+          `https://polygon-mumbai.infura.io/v3/${process.env.INFURA_API_KEY}`
+        )
          },
          gas: 5000000,
          gasPrice: 25000000000,
-         network_id: 3
+         network_id: 80001
        }
   },
   contracts_directory: './src/contracts',

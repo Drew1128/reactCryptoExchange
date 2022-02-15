@@ -35,8 +35,8 @@ class Trades extends Component {
               <thead>
                 <tr>
                   <th>Time</th>
-                  <th>Token</th>
-                  <th>Token/ETH</th>
+                  <th>Spyro</th>
+                  <th>Spyro/ETH</th>
                 </tr>
               </thead>
               { this.props.filledOrdersLoaded ? showFilledOrders(this.props.filledOrders) : <Spinner type="table" />}
