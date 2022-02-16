@@ -1,2 +1,2 @@
 # cryptoExchange
-Building a crypto currency exchange with React
+Built with React, Solidity, Web3.js, Truffle & Redux
