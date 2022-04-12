@@ -45,8 +45,8 @@ const  showOrderBooks = (props) => {
      <tbody>
          {orderBook.sellOrders.map((order) => renderOrder(order, props))}
          <tr>
-             <th>Spyro</th>
-             <th>Spyro/ETH</th>
+             <th>Dapp Token</th>
+             <th>Dapp Token/ETH</th>
              <th>ETH</th>
          </tr>
          {orderBook.buyOrders.map((order) => renderOrder(order, props))}
